@@ -1,5 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var connect = require('react-redux').connect;
+var store = require('./client/store');
+var Provider = require('react-redux').Provider;
+var actions = require('./client/actions');
 
 var router = require('react-router');
 var Router = router.Router;
@@ -24,6 +28,7 @@ var App = function(props) {
 
 
 var routes = (
+	<Provider store={store}>
     <Router history={hashHistory}>
     	<Route path="/" component={App}>
 	        <IndexRoute component={Landing} />
@@ -32,11 +37,12 @@ var routes = (
 	        <IndexRoute component={Quiz} />
         </Route>              
     </Router>
+    </Provider>
 );
 
 
 document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
-    	routes, 
+    		routes, 
     	document.getElementById('app'));
 });
