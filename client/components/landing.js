@@ -1,14 +1,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var router = require('react-router');
+var Link = router.Link;
 
 var Button = function(){
+
 	
-	
-	
-	
+
+
 	return (
 		<div>
-		<button>Register/Login</button>
+		<button><Link to={'/quiz'}>Register/Login</Link></button>
 		</div>
 		);
 };
