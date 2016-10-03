@@ -1,6 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var Logout = require('./logout');
+var Question = require('./question');
+var Input = require('./input');
+var Score = require('./score');
+
 
 
 var Quiz = React.createClass({
@@ -10,7 +15,6 @@ var Quiz = React.createClass({
 
 		return(
 			<div>
-				<h1>FrenchX</h1>
 				<Logout />
 						<Question />
 						<Input />

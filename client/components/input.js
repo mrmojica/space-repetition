@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var connect = require('react-redux');.connect;
+var connect = require('react-redux').connect;
 var actions = require('../actions');
 
 

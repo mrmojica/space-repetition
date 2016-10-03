@@ -2,6 +2,10 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var Button = function(){
+	
+	
+	
+	
 	return (
 		<div>
 		<button>Register/Login</button>

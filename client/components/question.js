@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var connect = require('react-redux');.connect;
+var connect = require('react-redux').connect;
 var actions = require('../actions');
 
 var Question = React.createClass({
@@ -10,7 +10,7 @@ var Question = React.createClass({
 
 		return(
 			<div>
-				{this.props.question}
+				Fromage
 			</div>
 			);
 
