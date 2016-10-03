@@ -32,5 +32,3 @@ var Quiz = React.createClass({
 
 
 module.exports = Quiz;
-
-

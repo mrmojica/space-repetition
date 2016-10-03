@@ -4,13 +4,15 @@ var connect = require('react-redux').connect;
 var actions = require('../actions');
 
 var Question = React.createClass({
-
+	componentDidMount: function() {
+	this.props.dispatch(actions.fetchData());
+},
 
 	render: function() {
 
 		return(
 			<div>
-				Fromage
+				{this.props.french}
 			</div>
 			);
 
@@ -21,7 +23,12 @@ var Question = React.createClass({
 
 });
 
+var mapStateToProps = function(state, props) {
+    return {
+        french: state.french
+    };
+};
 
+var Container = connect(mapStateToProps)(Question);
 
-module.exports = Question;
-
+module.exports = Container;

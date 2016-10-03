@@ -6,19 +6,20 @@ var actions = require('../actions');
 
 
 var Input = React.createClass({
-    submitInput: function(event) {
+    submitGuess: function(event) {
         event.preventDefault();
         var value = this.refs.input.value;
-       // this.props.dispatch(actions.makeGuess(this.refs.input.value));
-
+        console.log("submitted")
+        this.props.dispatch(actions.makeGuess(value.toLowerCase()));
+        this.props.dispatch(actions.fetchData());
+        this.refs.input.value = "";
     },
-
 
 
     render: function() {
         return (
-            <form onSubmit={this.submitInput}>
-                <input type="text" name="userInput" id="userInput" className="text" autoComplete="off" required ref="input" />
+            <form onSubmit={this.submitGuess}>
+                <input type="text" name="submitGuess" id="submitGuess" className="text" autoComplete="off" required ref="input" />
                 <input type="submit" id="inputButton" className="button" name="submit" value="Submit"/>
             </form>
         );
@@ -29,5 +30,11 @@ var Input = React.createClass({
 });
 
 
+var mapStateToProps = function(state) {
+    return {
+    };
+};
 
-module.exports = Input;
+var Container = connect(mapStateToProps)(Input);
+
+module.exports = Container;

@@ -3,20 +3,27 @@ require('isomorphic-fetch');
 
 
 var FETCH_WORD_SUCCESS = 'FETCH_WORD_SUCCESS';
-var fetchWordSuccess = function(frword, enword) {
+var fetchWordSuccess = function(words) {
     return {
-        type: FETCH_TODO_SUCCESS,
-        french: frword,
-        english: enword
-        
+        type: FETCH_WORD_SUCCESS,
+        words: words
+
     };
 };
 
 var FETCH_WORD_ERROR= 'FETCH_WORD_ERROR';
 var fetchWordError = function(error) {
     return {
-        type: FETCH_TODO_ERROR,
+        type: FETCH_WORD_ERROR,
         error: error
+    };
+};
+
+var MAKE_GUESS = 'MAKE_GUESS';
+var makeGuess = function(enword) {
+    return {
+        type: MAKE_GUESS,
+        english: enword
     };
 };
 
@@ -32,7 +39,7 @@ var fetchData = function() {
            }
            return response.json();
        })
- 
+
        .then(function(data) {
                console.log("DATA", data);
            return dispatch(
@@ -57,20 +64,6 @@ exports.FETCH_WORD_SUCCESS = FETCH_WORD_SUCCESS;
 exports.fetchWordSuccess = fetchWordSuccess;
 exports.FETCH_WORD_ERROR = FETCH_WORD_ERROR;
 exports.fetchWordError = fetchWordError;
-exports.fetchData;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+exports.MAKE_GUESS = MAKE_GUESS;
+exports.makeGuess = makeGuess;
+exports.fetchData = fetchData;
