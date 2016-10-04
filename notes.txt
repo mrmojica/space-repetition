@@ -1,0 +1,77 @@
+var words = [{
+	id: 0,
+	french: 'chat',
+	english: 'cat'
+},
+{
+	id: 1,
+	french: 'chien',
+	english: 'dog'
+},
+{
+	id: 2,
+	french: 'renard',
+	english: 'fox'
+},
+{
+	id: 3,
+	french: 'tigre',
+	english: 'tiger'
+},
+{
+	id: 4,
+	french: 'oiseau',
+	english: 'bird'
+}]
+
+var userData = {
+  id: 9952890532, 
+  quizHistory: [{
+  id: 0,
+  wrongAmt: 0
+},{
+  id: 1,
+  wrongAmt: 0
+},{
+  id: 2,
+  wrongAmt: 1
+},{
+  id: 3,
+  wrongAmt: 0
+},{
+  id: 4,
+  wrongAmt: 2
+}]}
+
+
+function spacedAlgo(){
+  
+  var quizSession = [];
+  for (var i = 0; i < words.length; i ++){
+    if (userData.quizHistory[i].wrongAmt > 0){
+      quizSession.push(words[i]);
+      quizSession.push(words[i]);
+    }
+    else {
+      quizSession.push(words[i]);
+    }
+  }
+  
+  function shuffle(array) {
+	var m = array.length, t, i;
+	// While there remain elements to shuffle
+	while (m) {
+		// Pick a remaining element
+		i = Math.floor(Math.random() * m--);
+		// And swap it with the current element
+		t = array[m];
+		array[m] = array[i];
+		array[i] = t;
+		}
+  	return array;
+	}
+  shuffle(quizSession);
+  console.log(quizSession);
+}
+
+spacedAlgo();
