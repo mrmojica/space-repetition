@@ -11,8 +11,8 @@ var Score = React.createClass({
 	render: function() {
 
 		return(
-			<div>
-			Score: {this.props.score}
+			<div>{this.props.feedback}
+			<br />Score: {this.props.score}
 			</div>
 			);
 
@@ -25,7 +25,8 @@ var Score = React.createClass({
 
 var mapStateToProps = function(state, props) {
     return {
-        score: state.score
+        score: state.score,
+				feedback: state.feedback
     };
 };
 

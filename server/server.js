@@ -36,15 +36,15 @@ if (require.main === module) {
 
 
 // db.collection.insert()
-//this inserts the database (word.js) we created to our mongodb. 
+//this inserts the database (word.js) we created to our mongodb.
 // Word.collection.insert(words, function(error) {
-
+//
 // 	if (error || null) {
 // 			return res.status(500).json({
 // 				message:'Internal Server Error'
 // 			});
 // 		}
-
+//
 // });
 
 // db.words.dropDatabase();
@@ -67,7 +67,7 @@ app.get('/api/question' , function(req, res) {
 			});
 		}
 		res.json(words);
-	});	
+	});
 });
 
 app.post('/api/question' , jsonParser, function(req, res) {

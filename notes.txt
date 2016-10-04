@@ -25,7 +25,7 @@ var words = [{
 }]
 
 var userData = {
-  id: 9952890532, 
+  id: 9952890532,
   quizHistory: [{
   id: 0,
   wrongAmt: 0
@@ -45,7 +45,7 @@ var userData = {
 
 
 function spacedAlgo(){
-  
+
   var quizSession = [];
   for (var i = 0; i < words.length; i ++){
     if (userData.quizHistory[i].wrongAmt > 0){
@@ -56,7 +56,7 @@ function spacedAlgo(){
       quizSession.push(words[i]);
     }
   }
-  
+
   function shuffle(array) {
 	var m = array.length, t, i;
 	// While there remain elements to shuffle
@@ -71,7 +71,7 @@ function spacedAlgo(){
   	return array;
 	}
   shuffle(quizSession);
-  console.log(quizSession);
+  return quizSession;
 }
 
 spacedAlgo();

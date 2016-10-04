@@ -3,9 +3,11 @@ var actions = require('./actions');
 var qCounter = 0;
 
 var initialState = {
+	id: 999,
 	french: "null",
 	english: "null",
-	score:0
+	score:0,
+	feedback: ""
 }
 
 var reducer = function(state, action) {
@@ -15,6 +17,7 @@ var reducer = function(state, action) {
       // TODO: add react immutability helpers
 			console.log("words" + action.words);
 			state = Object.assign({}, state, {
+					id: action.words[qCounter].id,
 					french: action.words[qCounter].french,
 					english: action.words[qCounter].english
 			});
@@ -27,15 +30,19 @@ var reducer = function(state, action) {
 			var guess = action.english;
 			console.log(action.english);
 			var currentScore = state.score;
+			var currentFeedback = state.feedback;
 			console.log("Make guess")
 
 			if (guess == state.english) {
 				currentScore = currentScore + 1;
+				currentFeedback = "Correct"
 			}
+			else {currentFeedback = "Incorrect"}
 
 			qCounter++;
 			state = Object.assign({}, state, {
-				score: currentScore
+				score: currentScore,
+				feedback: currentFeedback
 
 			});
 
