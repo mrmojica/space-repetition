@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+
 var config = require('../config');
 var words = require('./words');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -31,33 +32,45 @@ passport.use(new GoogleStrategy({
     clientSecret: 'TO02h4HSv-CGhR2Yv2Jcn3ty',
     callbackURL: "http://localhost:8080/auth/google/callback"
   },
-  function(accessToken, refreshToken, profile, cb) {
-  	console.log('-------', accessToken, profile);
-  	console.log('*********', profile.id);
+  function(accessToken, refreshToken, profile, done) {
+  	console.log('ACCESSTOKEN******', accessToken);
+  	console.log('PROFILE*********', profile);
   	// console.log('*_*_*_*_*_', user);
-  
+
    User.findOne({
-            'googleId': profile.id 
+            'googleId': profile.id
         }, function(err, user) {
             if (err) {
-                return cb(err);
+                return done(err);
             }
             //No user was found... so create a new user with values from Facebook (all the profile. stuff)
             if (!user) {
-                user = new User({
+                var newUser = {
 				  	googleId: profile.id,
 				  	accessToken: accessToken,
 				  	displayName: profile.displayName,
-				  	name: profile.name, 
-				  	quizHistory: []
-                });
-                user.save(function(err) {
-                    if (err) console.log(err);
-                    return cb(err, user);
-                });
+				  	name: profile.name.givenName + " " + profile.name.familyName,
+						quizHistory: [{
+					  id: 0,
+					  wrongAmt: 0
+					}]
+                };
+
+								User.create(newUser, function(err, user) {
+		if (err || !newUser) {
+				console.error("Could not create user", newUser.name);
+				return done(err, user);
+		}
+		console.log("Created user", newUser.name);
+		return done(err, user);
+});
+                // user.save(function(err) {
+                //     if (err) console.log(err);
+                //     return done(err, user);
+                // });
             } else {
                 //found user. Return
-                return cb(err, user);
+                return done(err, user);
             }
   });
 
@@ -74,12 +87,12 @@ passport.use(new GoogleStrategy({
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile'] }));
 
-app.get('/auth/google/callback', 
+app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login', session: false }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.cookie('accessToken', req.user.accessToken, {expires:0});
-    res.redirect('/public');
+    res.redirect('/#/quiz');
   });
 
 // accessToken: ya29.Ci9zA3DQVNgXLBa-z59TOPMH5KohT1LCsARqxQ7Un65KwDL1uEsbVfr4nEUATjOYCA
@@ -97,7 +110,7 @@ passport.use(new BearerStrategy(
   }
 ));
 
-app.get('/profile', 
+app.get('/profile',
   passport.authenticate('bearer', { session: false }),
   function(req, res) {
     res.json(req.user);
@@ -124,7 +137,7 @@ var runServer = function(callback) {
         });
     });
 };
-
+mongoose.Promise = global.Promise;
 if (require.main === module) {
     runServer(function(err) {
         if (err) {

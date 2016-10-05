@@ -5,12 +5,12 @@ var Link = router.Link;
 
 var Button = function(){
 
-	
+
 
 
 	return (
 		<div>
-		<button><Link to={'/quiz'}>Register/Login</Link></button>
+		<button><a href="/auth/google">Register/Login</a></button>
 		</div>
 		);
 };
@@ -31,4 +31,3 @@ var Landing = function(){
 
 
 module.exports = Landing;
-

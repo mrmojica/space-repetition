@@ -24,6 +24,26 @@ var words = [{
 	english: 'bird'
 }]
 
+// var Casey = {
+// 	id: 12382938092,
+// 	questions: [
+// 		{
+// 			answer: 'hello',
+// 			question: 'hola',
+// 			lastTime: ..Time,
+// 		times wrong:: 0
+//
+// 	},
+//
+// 		answer: 'hello',
+// 		question: 'hola',
+// 		lastTime: ..Time,
+// 	times wrong:: 0
+//
+// 	}
+// 	]
+// }
+
 var userData = {
   id: 9952890532,
   quizHistory: [{
@@ -44,34 +64,34 @@ var userData = {
 }]}
 
 
-function spacedAlgo(){
-
-  var quizSession = [];
-  for (var i = 0; i < words.length; i ++){
-    if (userData.quizHistory[i].wrongAmt > 0){
-      quizSession.push(words[i]);
-      quizSession.push(words[i]);
-    }
-    else {
-      quizSession.push(words[i]);
-    }
-  }
-
-  function shuffle(array) {
-	var m = array.length, t, i;
-	// While there remain elements to shuffle
-	while (m) {
-		// Pick a remaining element
-		i = Math.floor(Math.random() * m--);
-		// And swap it with the current element
-		t = array[m];
-		array[m] = array[i];
-		array[i] = t;
-		}
-  	return array;
-	}
-  shuffle(quizSession);
-  return quizSession;
-}
+// function spacedAlgo(){
+//
+//   var quizSession = [];
+//   for (var i = 0; i < words.length; i ++){
+//     if (userData.quizHistory[i].wrongAmt > 0){
+//       quizSession.push(words[i]);
+//       quizSession.push(words[i]);
+//     }
+//     else {
+//       quizSession.push(words[i]);
+//     }
+//   }
+//
+//   function shuffle(array) {
+// 	var m = array.length, t, i;
+// 	// While there remain elements to shuffle
+// 	while (m) {
+// 		// Pick a remaining element
+// 		i = Math.floor(Math.random() * m--);
+// 		// And swap it with the current element
+// 		t = array[m];
+// 		array[m] = array[i];
+// 		array[i] = t;
+// 		}
+//   	return array;
+// 	}
+//   shuffle(quizSession);
+//   return quizSession;
+// }
 
 spacedAlgo();

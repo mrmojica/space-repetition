@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
-	quizHistory: {type: Array, required: true },
-	googleId: { type: String, index: true },
+	googleId: { type: Number, index: true },
 	accessToken: { type: String, required: true },
 	displayName: { type: String, required: true },
-	name: { type: String, required: true }
+	name: { type: String, required: true },
+	quizHistory: {type: Array, required: true }
 });
 
 var User = mongoose.model('User', UserSchema);

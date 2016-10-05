@@ -9,7 +9,7 @@ var router = require('react-router');
 var Router = router.Router;
 var Route = router.Route;
 var IndexRoute = router.IndexRoute;
-var browserHistory = router.browserHistory;
+var hashHistory = router.hashHistory;
 var Link = router.Link;
 
 var Landing = require('./client/components/landing');
@@ -29,20 +29,30 @@ var App = function(props) {
 
 var routes = (
 	<Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
     	<Route path="/" component={App}>
 	        <IndexRoute component={Landing} />
-        </Route>
-        <Route path="/quiz" component={App}>
-	        <IndexRoute component={Quiz} />
-        </Route>              
+          <Route path="/quiz" component={Quiz} />
+      </Route>
     </Router>
     </Provider>
 );
 
+/*
+<Provider store={store}>
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+        <IndexRoute component={Landing} />
+      </Route>
+      <Route path="/quiz" component={App}>
+        <IndexRoute component={Quiz} />
+      </Route>
+  </Router>
+  </Provider>
+*/
 
 document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
-    		routes, 
+    		routes,
     	document.getElementById('app'));
 });
