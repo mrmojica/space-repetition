@@ -5,6 +5,7 @@ var config = require('../config');
 var words = require('./words');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var Word = require('../models/wordSchema');
+var User = require('../models/userSchema');
 var passport = require('passport');
 var BearerStrategy = require('passport-http-bearer').Strategy;
 
@@ -17,6 +18,7 @@ app.use('/', express.static('build'));
 
 app.get('/public', function(req, res) {
 	res.json({
+
 		message:'google strategy'
 
 	});
@@ -31,21 +33,43 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
   	console.log('-------', accessToken, profile);
+  	console.log('*********', profile.id);
+  	// console.log('*_*_*_*_*_', user);
   
-  //   User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      // return cb(err, user);
-  //   });
-  var user = {
-  	googleId: profile.id,
-  	accessToken: accessToken,
-  	displayName: profile.displayName,
-  	name: profile.name
+   User.findOne({
+            'googleId': profile.id 
+        }, function(err, user) {
+            if (err) {
+                return cb(err);
+            }
+            //No user was found... so create a new user with values from Facebook (all the profile. stuff)
+            if (!user) {
+                user = new User({
+				  	googleId: profile.id,
+				  	accessToken: accessToken,
+				  	displayName: profile.displayName,
+				  	name: profile.name, 
+				  	quizHistory: []
+                });
+                user.save(function(err) {
+                    if (err) console.log(err);
+                    return cb(err, user);
+                });
+            } else {
+                //found user. Return
+                return cb(err, user);
+            }
+  });
 
-  }
-  	return cb(null, user);
+// return cb(null, user);
+  }));
 
-  }
-));
+  // var user = {
+  // 	googleId: profile.id,
+  // 	accessToken: accessToken,
+  // 	displayName: profile.displayName,
+  // 	name: profile.name
+   // };
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile'] }));
@@ -54,17 +78,17 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login', session: false }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.cookie('accessToken', req.user.accessToken, {expires:0, httpOnly: true});
+    res.cookie('accessToken', req.user.accessToken, {expires:0});
     res.redirect('/public');
   });
 
-
+// accessToken: ya29.Ci9zA3DQVNgXLBa-z59TOPMH5KohT1LCsARqxQ7Un65KwDL1uEsbVfr4nEUATjOYCA
 
 passport.use(new BearerStrategy(
   function(token, done) {
   	console.log('token', token);
   	//we need the token to equal the accessToken
-  	if(token == 12345) {
+  	if(token == 'ya29.Ci9zA3DQVNgXLBa-z59TOPMH5KohT1LCsARqxQ7Un65KwDL1uEsbVfr4nEUATjOYCA') {
   		var user = {user:'bob'};
   		return done(null, user, {scope: 'read'});
   	} else {

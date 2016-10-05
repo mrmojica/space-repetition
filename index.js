@@ -9,7 +9,7 @@ var router = require('react-router');
 var Router = router.Router;
 var Route = router.Route;
 var IndexRoute = router.IndexRoute;
-var hashHistory = router.hashHistory;
+var browserHistory = router.browserHistory;
 var Link = router.Link;
 
 var Landing = require('./client/components/landing');
@@ -29,7 +29,7 @@ var App = function(props) {
 
 var routes = (
 	<Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
     	<Route path="/" component={App}>
 	        <IndexRoute component={Landing} />
         </Route>
