@@ -131,7 +131,7 @@ passport.use(new BearerStrategy(
 
 
 
-app.get('/profile',
+app.get('/user',
   passport.authenticate('bearer', { session: false }),
   function(req, res) {
     res.json(req.user);

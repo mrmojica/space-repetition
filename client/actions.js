@@ -29,25 +29,28 @@ var makeGuess = function(enword) {
     };
 };
 
-var getToken = function() {
-  var cookies = document.cookie;
-  var accessToken = cookies.split('=');
-  console.log('accessToken function', accessToken);
-  return accessToken[1];
-}
+// var getToken = function() {
+//   var cookies = document.cookie;
+//   var accessToken = cookies.split('=');
+//   console.log('accessToken function', accessToken);
+//   return accessToken[1];
+// }
 
 
 var fetchData = function() {
    return function(dispatch) {
-    // var token = Cookies.get('accessToken');
-    var token = getToken();
+    var token = Cookies.get('accessToken');
+    // var token = getToken();
     console.log('token=', token);
-    const headers = new Headers();
-    headers.append('Authorization', `Bearer ` + token);
+    // const headers = new Headers();
+    // headers.append('Authorization', `Bearer ` + token);
+    var headers = new Headers({
+        Authorization: 'bearer ' + token
+      });
     console.log('header', headers);
-       var url = 'http://localhost:8080/api/question';
+       var url = 'http://localhost:8080/user';
 
-       return fetch(url, {headers}).then(function(response) {
+       return fetch(url, {headers: headers}).then(function(response) {
            if (response.status < 200 || response.status >= 300) {
                var error = new Error(response.statusText);
                error.response = response;
