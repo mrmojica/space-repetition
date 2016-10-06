@@ -146,19 +146,19 @@ app.get('/user',
 });
 
 app.put('/user/:id', jsonParser, function(req, res) {
-	var newSession;
+
     // return the index of the object
     var id = req.params.id;
-    var name = req.body.name;
+		var newHistory = req.body.quizHistory;
     User.findOneAndUpdate(
-    	{_id: id }, 
-    	{questionHistory: newSession},
+    	{_id: id },
+    	{quizHistory: newHistory},
     	function(err, doc){
     		if(err) {
     			console.log('Could not update data!');
     		}
     		console.log(doc);
- 
+
     });
 
 
@@ -167,9 +167,9 @@ app.put('/user/:id', jsonParser, function(req, res) {
         return res.sendStatus(404);
     }
 
-    res.status(200).json(storage.update(id, name));
+    res.status(200).json("Success");
     // console.log(storage.items);
-    
+
 });
 
 
