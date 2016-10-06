@@ -97,18 +97,39 @@ app.get('/auth/google/callback',
 
 // accessToken: ya29.Ci9zA3DQVNgXLBa-z59TOPMH5KohT1LCsARqxQ7Un65KwDL1uEsbVfr4nEUATjOYCA
 
+// passport.use(new BearerStrategy(
+//   function(token, done) {
+//   	console.log('token', token);
+//   	//we need the token to equal the accessToken
+//   	if(token == 'ya29.Ci9zA3DQVNgXLBa-z59TOPMH5KohT1LCsARqxQ7Un65KwDL1uEsbVfr4nEUATjOYCA') {
+//   		var user = {user:'bob'};
+//   		return done(null, user, {scope: 'read'});
+//   	} else {
+//   		return done(null, false);
+//   	}
+//   }
+// ));
+
+
 passport.use(new BearerStrategy(
   function(token, done) {
   	console.log('token', token);
-  	//we need the token to equal the accessToken
-  	if(token == 'ya29.Ci9zA3DQVNgXLBa-z59TOPMH5KohT1LCsARqxQ7Un65KwDL1uEsbVfr4nEUATjOYCA') {
-  		var user = {user:'bob'};
-  		return done(null, user, {scope: 'read'});
-  	} else {
-  		return done(null, false);
-  	}
-  }
+  	User.find({ accesToken: token}, function(err, users) {
+  		if(err) {
+  			return done(err)
+  		}
+  		if(!users) {
+  			console.log('no user found');
+  			return done(null, false)
+  		}
+  		console.log('found user');
+  		return done(null, users, {scope: 'read'});
+  	});
+}
 ));
+
+
+
 
 app.get('/profile',
   passport.authenticate('bearer', { session: false }),

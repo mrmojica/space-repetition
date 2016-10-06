@@ -1,4 +1,6 @@
 require('isomorphic-fetch');
+var Cookies = require('js-cookie');
+
 
 
 
@@ -27,11 +29,25 @@ var makeGuess = function(enword) {
     };
 };
 
+var getToken = function() {
+  var cookies = document.cookie;
+  var accessToken = cookies.split('=');
+  console.log('accessToken function', accessToken);
+  return accessToken[1];
+}
+
 
 var fetchData = function() {
    return function(dispatch) {
+    // var token = Cookies.get('accessToken');
+    var token = getToken();
+    console.log('token=', token);
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ` + token);
+    console.log('header', headers);
        var url = 'http://localhost:8080/api/question';
-       return fetch(url).then(function(response) {
+
+       return fetch(url, {headers}).then(function(response) {
            if (response.status < 200 || response.status >= 300) {
                var error = new Error(response.statusText);
                error.response = response;
@@ -55,32 +71,32 @@ var fetchData = function() {
    }
 };
 
-var fetchUser = function() {
-   return function(dispatch) {
-       var url = 'http://localhost:8080/auth/google';
-       return fetch(url).then(function(response) {
-           if (response.status < 200 || response.status >= 300) {
-               var error = new Error(response.statusText);
-               error.response = response;
-               throw error;
-           }
-           return response.json();
-       })
+// var fetchUser = function() {
+//    return function(dispatch) {
+//        var url = 'http://localhost:8080/auth/google';
+//        return fetch(url).then(function(response) {
+//            if (response.status < 200 || response.status >= 300) {
+//                var error = new Error(response.statusText);
+//                error.response = response;
+//                throw error;
+//            }
+//            return response.json();
+//        })
 
-       .then(function(data) {
-               console.log("DATA", data);
-           return dispatch(
-               fetchWordSuccess(data)
-           );
-       })
-       .catch(function(error) {
+//        .then(function(data) {
+//                console.log("DATA", data);
+//            return dispatch(
+//                fetchWordSuccess(data)
+//            );
+//        })
+//        .catch(function(error) {
 
-           return dispatch(
-               fetchWordError(error)
-           );
-       });
-   }
-};
+//            return dispatch(
+//                fetchWordError(error)
+//            );
+//        });
+//    }
+// };
 
 
 
