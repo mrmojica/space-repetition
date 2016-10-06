@@ -50,10 +50,10 @@ passport.use(new GoogleStrategy({
 				  	accessToken: accessToken,
 				  	displayName: profile.displayName,
 				  	name: profile.name.givenName + " " + profile.name.familyName,
-						quizHistory: [{
-					  id: 0,
-					  wrongAmt: 0
-					}]
+					// quizHistory: [{
+					//   id: 0,
+					//   wrongAmt: 0
+					// }]
                 };
 
 								User.create(newUser, function(err, user) {
@@ -69,7 +69,7 @@ passport.use(new GoogleStrategy({
                 //     return done(err, user);
                 // });
             } else {
-                //found user. Return
+                //found user. Return + UPDATE
                 return done(err, user);
             }
   });
@@ -134,8 +134,19 @@ passport.use(new BearerStrategy(
 app.get('/user',
   passport.authenticate('bearer', { session: false }),
   function(req, res) {
-    res.json(req.user);
-  });
+  		User.find(function(err, words){
+		if (err) {
+			return res.status(500).json({
+				message:'Internal Server Error'
+			});
+		}
+		res.json(words);
+	});
+});
+
+
+  //   res.json(req.user);
+  // });
 
 
 

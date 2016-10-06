@@ -15,11 +15,11 @@ var reducer = function(state, action) {
 	console.log("Hit the reducer")
     if(action.type === actions.FETCH_WORD_SUCCESS) {
       // TODO: add react immutability helpers
-			console.log("words" + action.words);
+			console.log("words" + action.words[0].quizHistory);
 			state = Object.assign({}, state, {
-					id: action.words[qCounter].id,
-					french: action.words[qCounter].french,
-					english: action.words[qCounter].english
+					id: action.words[0].quizHistory[qCounter].id,
+					french: action.words[0].quizHistory[qCounter].french,
+					english: action.words[0].quizHistory[qCounter].english
 			});
       return state;
     }
