@@ -5,7 +5,7 @@ var actions = require('../actions');
 
 var Score = React.createClass({
 	componentDidMount: function() {
-	this.props.dispatch(actions.fetchData());
+	this.props.dispatch(actions.fetchWords());
 },
 
 	render: function() {

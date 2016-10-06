@@ -5,22 +5,17 @@ var actions = require('../actions');
 
 var Question = React.createClass({
 	componentDidMount: function() {
-	this.props.dispatch(actions.fetchData());
+	this.props.dispatch(actions.fetchUser());
+	this.props.dispatch(actions.fetchWords());
 },
 
 	render: function() {
-
 		return(
 			<div>
 				{this.props.french}
 			</div>
 			);
-
-
 	}
-
-
-
 });
 
 var mapStateToProps = function(state, props) {

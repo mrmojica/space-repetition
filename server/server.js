@@ -70,6 +70,7 @@ passport.use(new GoogleStrategy({
                 // });
             } else {
                 //found user. Return + UPDATEwww
+
                 return done(err, user);
             }
   });
@@ -145,14 +146,20 @@ app.get('/user',
 	});
 });
 
+
+
+
 app.put('/user/:id', jsonParser, function(req, res) {
 
     // return the index of the object
     var id = req.params.id;
 		var newHistory = req.body.quizHistory;
+		var newSession = [3, 2, 1];
     User.findOneAndUpdate(
     	{_id: id },
-    	{quizHistory: newHistory},
+    	{quizHistory: newHistory,
+			quizSession: newSession},
+			//quizSession: algorithmfunction(newHistory);
     	function(err, doc){
     		if(err) {
     			console.log('Could not update data!');
@@ -172,16 +179,8 @@ app.put('/user/:id', jsonParser, function(req, res) {
 
 });
 
-
-
   //   res.json(req.user);
   // });
-
-
-
-
-
-
 
 
 var runServer = function(callback) {

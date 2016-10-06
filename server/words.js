@@ -1,62 +1,52 @@
 var words = [{
 	id: 0,
 	french: 'chat',
-	english: 'cat',
-	wrongAmt: 0
+	english: 'cat'
 },
 {
 	id: 1,
 	french: 'chien',
-	english: 'dog',
-	wrongAmt: 0
+	english: 'dog'
 },
 {
 	id: 2,
 	french: 'renard',
-	english: 'fox',
-	wrongAmt: 0
+	english: 'fox'
 },
 {
 	id: 3,
 	french: 'tigre',
-	english: 'tiger',
-	wrongAmt: 0
+	english: 'tiger'
 },
 {
 	id: 4,
 	french: 'oiseau',
-	english: 'bird',
-	wrongAmt: 0
+	english: 'bird'
 },
 {
 	id: 5,
 	french: 'ours',
-	english: 'bear',
-	wrongAmt: 0
+	english: 'bear'
 },
 {
 	id: 6,
 	french: 'lapin',
-	english: 'rabbit',
-	wrongAmt: 0
+	english: 'rabbit'
 },
 {
 	id: 7,
 	french: 'grenouille',
-	english: 'frog',
-	wrongAmt: 0
+	english: 'frog'
 },
 {
 	id: 8,
 	french: 'loup',
-	english: 'wolf',
-	wrongAmt: 0
+	english: 'wolf'
 },
 {
 	id: 9,
 	french: 'tortue',
-	english: 'turtle',
-	wrongAmt: 0
+	english: 'turtle'
 }];
 
 

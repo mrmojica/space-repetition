@@ -11,17 +11,26 @@ var Input = React.createClass({
         var value = this.refs.input.value;
         console.log("submitted")
         this.props.dispatch(actions.makeGuess(value.toLowerCase()));
-        this.props.dispatch(actions.fetchData());
+        this.props.dispatch(actions.fetchWords());
         this.refs.input.value = "";
     },
 
+    endGame: function(e) {
+      if (this.props.endGame == true){
+        this.props.dispatch(actions.sendUser(this.props.userId, this.props.newHistory))
+        return (
+          <div>DONE YO</div>
+        )
+      }
+    },
 
     render: function() {
-        return (
+        return (<div>
             <form onSubmit={this.submitGuess}>
                 <input type="text" name="submitGuess" id="submitGuess" className="text" autoComplete="off" required ref="input" />
                 <input type="submit" id="inputButton" className="button" name="submit" value="Submit"/>
             </form>
+            <div>{this.endGame()}</div></div>
         );
     }
 
@@ -32,6 +41,9 @@ var Input = React.createClass({
 
 var mapStateToProps = function(state) {
     return {
+      endGame: state.endGame,
+      userId: state.userId,
+      newHistory: state.newHistory
     };
 };
 
