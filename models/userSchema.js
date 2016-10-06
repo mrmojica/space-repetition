@@ -6,15 +6,10 @@ var UserSchema = new mongoose.Schema({
 	accessToken: { type: String, required: true },
 	displayName: { type: String, required: true },
 	name: { type: String, required: true },
-	quizHistory: {type: Array, default: Words }
+	quizHistory: {type: Array, default: Words },
+	quizSession: {type: Array}
 });
 
 var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
-
-
-					// googleId: profile.id,
-				 //  	accessToken: accessToken,
-				 //  	displayName: profile.displayName,
-				 //  	name: profile.name

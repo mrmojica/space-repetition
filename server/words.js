@@ -1,53 +1,63 @@
 var words = [{
 	id: 0,
 	french: 'chat',
-	english: 'cat'
+	english: 'cat',
+	wrongAmt: 0
 },
 {
 	id: 1,
 	french: 'chien',
-	english: 'dog'
+	english: 'dog',
+	wrongAmt: 0
 },
 {
 	id: 2,
 	french: 'renard',
-	english: 'fox'
+	english: 'fox',
+	wrongAmt: 0
 },
 {
 	id: 3,
 	french: 'tigre',
-	english: 'tiger'
+	english: 'tiger',
+	wrongAmt: 0
 },
 {
 	id: 4,
 	french: 'oiseau',
-	english: 'bird'
+	english: 'bird',
+	wrongAmt: 0
 },
 {
 	id: 5,
 	french: 'ours',
-	english: 'bear'
+	english: 'bear',
+	wrongAmt: 0
 },
 {
 	id: 6,
 	french: 'lapin',
-	english: 'rabbit'
+	english: 'rabbit',
+	wrongAmt: 0
 },
 {
 	id: 7,
 	french: 'grenouille',
-	english: 'frog'
+	english: 'frog',
+	wrongAmt: 0
 },
 {
 	id: 8,
 	french: 'loup',
-	english: 'wolf'
+	english: 'wolf',
+	wrongAmt: 0
 },
 {
 	id: 9,
 	french: 'tortue',
-	english: 'turtle'
-},];
+	english: 'turtle',
+	wrongAmt: 0
+}];
 
 
 module.exports = words;

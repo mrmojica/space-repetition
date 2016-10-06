@@ -69,7 +69,7 @@ passport.use(new GoogleStrategy({
                 //     return done(err, user);
                 // });
             } else {
-                //found user. Return + UPDATE
+                //found user. Return + UPDATEwww
                 return done(err, user);
             }
   });
@@ -139,10 +139,39 @@ app.get('/user',
 			return res.status(500).json({
 				message:'Internal Server Error'
 			});
+
 		}
 		res.json(words);
 	});
 });
+
+app.put('/user/:id', jsonParser, function(req, res) {
+	var newSession;
+    // return the index of the object
+    var id = req.params.id;
+    var name = req.body.name;
+    User.findOneAndUpdate(
+    	{_id: id }, 
+    	{questionHistory: newSession},
+    	function(err, doc){
+    		if(err) {
+    			console.log('Could not update data!');
+    		}
+    		console.log(doc);
+ 
+    });
+
+
+
+    if (!req.params.id) {
+        return res.sendStatus(404);
+    }
+
+    res.status(200).json(storage.update(id, name));
+    // console.log(storage.items);
+    
+});
+
 
 
   //   res.json(req.user);

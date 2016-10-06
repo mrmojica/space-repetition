@@ -74,10 +74,23 @@ var fetchData = function() {
    }
 };
 
-// var fetchUser = function() {
+
+//UPDATE DATA ACTION
+// var fetchSendUserData = function(id) {
 //    return function(dispatch) {
-//        var url = 'http://localhost:8080/auth/google';
-//        return fetch(url).then(function(response) {
+//        var url = 'http://localhost:8080/user/' + id;
+//        return fetch(url,
+//        {
+//           method: 'put',
+//           headers: {'Content-type': 'application/json'},
+//           body: JSON.stringify({
+//           id: id
+//         })
+
+
+//        }
+
+//         ).then(function(response) {
 //            if (response.status < 200 || response.status >= 300) {
 //                var error = new Error(response.statusText);
 //                error.response = response;
