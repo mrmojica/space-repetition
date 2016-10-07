@@ -4,7 +4,7 @@ var ReactDOM = require('react-dom');
 var Logout = function(){
 	return (
 		<div>
-		<button>Log Out</button>
+		<button><a href="/logout">Log Out</a></button>
 		</div>
 		);
 };

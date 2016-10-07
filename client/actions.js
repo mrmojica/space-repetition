@@ -46,6 +46,20 @@ var makeGuess = function(enword) {
     };
 };
 
+var NEW_GAME = 'NEW_GAME';
+var newGame = function() {
+    return {
+        type: NEW_GAME
+    };
+};
+
+
+
+
+
+
+
+
 // var getToken = function() {
 //   var cookies = document.cookie;
 //   var accessToken = cookies.split('=');
@@ -172,6 +186,8 @@ var sendUser = function(id, newHistory) {
 
 
 
+exports.NEW_GAME = NEW_GAME;
+exports.newGame = newGame;
 
 exports.FETCH_WORD_SUCCESS = FETCH_WORD_SUCCESS;
 exports.fetchWordSuccess = fetchWordSuccess;

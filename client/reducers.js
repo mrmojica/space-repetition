@@ -19,11 +19,11 @@ var currentSession = [];
 
 //Quiz Session will be an array of question IDs
 var reducer = function(state, action) {
-	console.log(currentSession);
+	// console.log('actions', actions);
 	state = state || initialState;
-	console.log("Hit the reducer")
-	console.log("currentSession " + currentSession[qCounter]);
+	console.log("Hit the reducer");
     if(action.type === actions.FETCH_WORD_SUCCESS) {
+    	console.log('fetchword success');
 			if (currentSession[qCounter] == undefined) {
 				state = Object.assign({}, state, {
 						endGame: true
@@ -76,6 +76,22 @@ var reducer = function(state, action) {
 
 			return state;
 		}
+
+		else if (action.type === actions.NEW_GAME) {
+			console.log('New Game');
+			qCounter = 0;
+			state = Object.assign({}, state, {
+				score: 0,
+				feedback: '',
+				endGame: false
+
+
+			});
+			return state;
+		}
+		
+
+
     return state;
 }
 

@@ -2,6 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var connect = require('react-redux').connect;
 var actions = require('../actions');
+// var router = require('react-router');
+// var Link = router.Link;
 
 
 
@@ -15,22 +17,48 @@ var Input = React.createClass({
         this.refs.input.value = "";
     },
 
-    endGame: function(e) {
-      if (this.props.endGame == true){
-        this.props.dispatch(actions.sendUser(this.props.userId, this.props.newHistory))
-        return (
-          <div>DONE YO</div>
-        )
-      }
+    newSession: function(event) {
+        event.preventDefault();
+        console.log('New Session clicked');
+        this.props.dispatch(actions.newGame());
+        this.props.dispatch(actions.fetchUser());
+        this.props.dispatch(actions.fetchWords());
+        
     },
 
-    render: function() {
-        return (<div>
+    endGame: function(e) {
+      console.log('endgame ran');
+      console.log('endGame', this.props.endGame);
+      if (this.props.endGame == false) {
+                return (
             <form onSubmit={this.submitGuess}>
                 <input type="text" name="submitGuess" id="submitGuess" className="text" autoComplete="off" required ref="input" />
                 <input type="submit" id="inputButton" className="button" name="submit" value="Submit"/>
             </form>
-            <div>{this.endGame()}</div></div>
+           
+        );
+
+      }  
+      else {
+        this.props.dispatch(actions.sendUser(this.props.userId, this.props.newHistory))
+        return (
+          <div>
+          <h1>Session Completed</h1>
+            <form onSubmit={this.newSession}>
+             <input type="submit" id="newSessionButton" className="button" name="newSession" value="New Session"/>
+            </form>
+          </div>
+        )
+      }
+    },
+
+
+
+    render: function() {
+        return (
+       
+            <div>{this.endGame()}</div>
+          
         );
     }
 

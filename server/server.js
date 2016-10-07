@@ -247,6 +247,19 @@ app.post('/api/question' , jsonParser, function(req, res) {
 });
 
 
+
+// route for logging out
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
+
+
+
+
+
+
 exports.app = app;
 exports.runServer = runServer;
 
