@@ -13,8 +13,9 @@ var initialState = {
 	newHistory: ["whatever"]
 }
 
-
+// The currentSession grabs/holds the session data from the user database.
 var currentSession = [];
+//added currenthistory variable to make copy of user data from the server.  This makes it easier editing the state. 
 var currentHistory = [];
 
 //Quiz Session will be an array of question IDs
@@ -66,14 +67,16 @@ var reducer = function(state, action) {
 			console.log("Make guess")
 
 			if (guess == state.english) {
+				//if user answers correctly decrease wrong amount
 				currentHistory[currentSession[qCounter]].wrongAmt--;
 				currentScore = currentScore + 1;
 				currentFeedback = "Correct"
 			}
+			//if user answers incorrectly increase wrong amount 
 			else {currentHistory[currentSession[qCounter]].wrongAmt++;
 				currentFeedback = "Incorrect"}
-
-			qCounter++;
+				qCounter++;
+				// Update state
 			state = Object.assign({}, state, {
 				score: currentScore,
 				feedback: currentFeedback,
@@ -83,7 +86,7 @@ var reducer = function(state, action) {
 
 			return state;
 		}
-
+		//user history gets updated in databse
 		else if (action.type === actions.NEW_GAME) {
 			console.log('New Game');
 			qCounter = 0;
