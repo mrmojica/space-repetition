@@ -6,6 +6,8 @@ var packageData = require('./package.json');
 
 var filename = [packageData.name, packageData.version, 'js'];
 
+var plugins = [];
+
 module.exports = {
     entry: path.resolve(__dirname, packageData.main),
     output: {
@@ -24,5 +26,5 @@ module.exports = {
                 }
             }
         ]
-    }
+    }, plugins: plugins
 };

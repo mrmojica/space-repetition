@@ -12,7 +12,7 @@ var Question = React.createClass({
 	render: function() {
 		return(
 			<div>
-				{this.props.french}
+				<h2>{this.props.french}</h2>
 			</div>
 			);
 	}

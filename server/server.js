@@ -286,6 +286,7 @@ app.post('/api/question' , jsonParser, function(req, res) {
 
 // route for logging out
 app.get('/logout', function(req, res) {
+	console.log('logging out');
     req.logout();
     res.redirect('/');
 });

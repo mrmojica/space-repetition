@@ -11,7 +11,7 @@ var Score = React.createClass({
 	render: function() {
 
 		return(
-			<div>{this.props.feedback}
+			<div id="score">{this.props.feedback}
 			<br />Score: {this.props.score}
 			</div>
 			);

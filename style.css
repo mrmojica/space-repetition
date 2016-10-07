@@ -1,0 +1,18 @@
+#app {
+	margin-top:10em;
+}
+
+#landing {
+	text-align:center;
+
+}
+
+#landing button a {
+	color:white;
+}
+
+#landing-header {
+width: 100%;
+background-color:blue;
+}
+
