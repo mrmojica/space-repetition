@@ -10,18 +10,19 @@ var initialState = {
 	score:0,
 	feedback: "",
 	endGame: false,
-	newHistory: ["whatever", "dunno"]
+	newHistory: ["whatever"]
 }
 
 
 var currentSession = [];
-
+var currentHistory = [];
 
 //Quiz Session will be an array of question IDs
 var reducer = function(state, action) {
 	// console.log('actions', actions);
 	state = state || initialState;
 	console.log("Hit the reducer");
+	console.log("new history is ", state.newHistory);
     if(action.type === actions.FETCH_WORD_SUCCESS) {
     	console.log('fetchword success');
 			if (currentSession[qCounter] == undefined) {
@@ -45,6 +46,9 @@ var reducer = function(state, action) {
     }
 		else if (action.type === actions.FETCH_USER_SUCCESS) {
 			console.log("user " + action.user);
+			if (currentHistory.length == 0) {
+				currentHistory = action.user[0].quizHistory
+			}
 			currentSession = action.user[0].quizSession;
 			state = Object.assign({}, state, {
 					userId: action.user[0]._id
@@ -62,15 +66,18 @@ var reducer = function(state, action) {
 			console.log("Make guess")
 
 			if (guess == state.english) {
+				currentHistory[currentSession[qCounter]].wrongAmt--;
 				currentScore = currentScore + 1;
 				currentFeedback = "Correct"
 			}
-			else {currentFeedback = "Incorrect"}
+			else {currentHistory[currentSession[qCounter]].wrongAmt++;
+				currentFeedback = "Incorrect"}
 
 			qCounter++;
 			state = Object.assign({}, state, {
 				score: currentScore,
-				feedback: currentFeedback
+				feedback: currentFeedback,
+				newHistory: currentHistory
 
 			});
 
