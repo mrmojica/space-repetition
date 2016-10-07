@@ -19,7 +19,7 @@ var Quiz = require('./client/components/quiz');
 
 var App = function(props) {
     return (
-        <div>
+        <div className="container">
 	       {props.children}
         </div>
     );

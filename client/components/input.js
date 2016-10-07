@@ -33,7 +33,7 @@ var Input = React.createClass({
                 return (
             <form onSubmit={this.submitGuess}>
                 <input type="text" name="submitGuess" id="submitGuess" className="text" autoComplete="off" required ref="input" />
-                <input type="submit" id="inputButton" className="button" name="submit" value="Submit"/>
+                <input type="submit" id="inputButton" className="button btn btn-primary" name="submit" value="Submit"/>
             </form>
            
         );
@@ -45,7 +45,7 @@ var Input = React.createClass({
           <div>
           <h1>Session Completed</h1>
             <form onSubmit={this.newSession}>
-             <input type="submit" id="newSessionButton" className="button" name="newSession" value="New Session"/>
+             <input type="submit" id="newSessionButton" className="button btn btn-primary" name="newSession" value="New Session"/>
             </form>
           </div>
         )
