@@ -16,9 +16,11 @@ var Quiz = React.createClass({
 		return(
 			<div>
 				<Header />
+				<div id="quiz-field">
 						<Question />
 						<Input />
-				<Score />
+						<Score />
+				</div>
 			</div>
 			);
 
