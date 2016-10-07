@@ -24,6 +24,7 @@ var reducer = function(state, action) {
 	state = state || initialState;
 	console.log("Hit the reducer");
 	console.log("new history is ", state.newHistory);
+	console.log("current session ", currentSession);
     if(action.type === actions.FETCH_WORD_SUCCESS) {
     	console.log('fetchword success');
 			if (currentSession[qCounter] == undefined) {
@@ -34,7 +35,7 @@ var reducer = function(state, action) {
 			}
 
       // TODO: add react immutability helpers
-			console.log("words " + action.words);
+			console.log("words ", action.words);
 			state = Object.assign({}, state, {
 					id: action.words[currentSession[qCounter]].id,
 					french: action.words[currentSession[qCounter]].french,
@@ -45,6 +46,7 @@ var reducer = function(state, action) {
 		else if (action.type === actions.FETCH_WORD_ERROR) {
       console.log(action.error);
     }
+    	//fetchUser is grabbing the session array index list (the index list is used as a index for the questions)
 		else if (action.type === actions.FETCH_USER_SUCCESS) {
 			console.log("user " + action.user);
 			if (currentHistory.length == 0) {

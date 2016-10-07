@@ -147,19 +147,55 @@ app.get('/user',
 });
 
 
+function spacedAlgo(history){
 
+  var newSess = [];
+  for (var i = 0; i < history.length; i ++){
 
+  	if (history[i].wrongAmt >= 3) {
+      newSess.push(history[i].id);
+      newSess.push(history[i].id);
+      newSess.push(history[i].id);
+
+     }
+    else if (history[i].wrongAmt > 0){
+      newSess.push(history[i].id);
+      newSess.push(history[i].id);
+    }
+    
+    else {
+      newSess.push(history[i].id);
+    }
+  }
+
+  function shuffle(array) {
+	var m = array.length, t, i;
+	// While there remain elements to shuffle
+	while (m) {
+		// Pick a remaining element
+		i = Math.floor(Math.random() * m--);
+		// And swap it with the current element
+		t = array[m];
+		array[m] = array[i];
+		array[i] = t;
+		}
+  	return array;
+	}
+  shuffle(newSess);
+  return newSess;
+}
+
+//Update
 app.put('/user/:id', jsonParser, function(req, res) {
 
     // return the index of the object
     var id = req.params.id;
 		var newHistory = req.body.quizHistory;
-		var newSession = [3, 2, 1];
+		var newSession = spacedAlgo(newHistory);
     User.findOneAndUpdate(
     	{_id: id },
     	{quizHistory: newHistory,
 			quizSession: newSession},
-			//quizSession: algorithmfunction(newHistory);
     	function(err, doc){
     		if(err) {
     			console.log('Could not update data!');
