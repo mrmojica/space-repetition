@@ -12,7 +12,7 @@ var Logout = function(){
 var Header = function() {
 	return(
 		<div id="quiz-header">
-		<h2>FrenchX</h2>
+		<h2>French Vocabulary: Animals (Les Animaux)</h2>
 			<Logout />
 		</div>
 		)

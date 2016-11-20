@@ -40,6 +40,8 @@ var Input = React.createClass({
 
       }  
       else {
+        console.log('userId', this.props.userId);
+        console.log('newhistory', this.props.newHistory);
         this.props.dispatch(actions.sendUser(this.props.userId, this.props.newHistory))
         return (
           <div>

@@ -246,13 +246,13 @@ if (require.main === module) {
 // db.collection.insert()
 //this inserts the database (word.js) we created to our mongodb.
 // Word.collection.insert(words, function(error) {
-//
+
 // 	if (error || null) {
 // 			return res.status(500).json({
 // 				message:'Internal Server Error'
 // 			});
 // 		}
-//
+
 // });
 
 // db.words.dropDatabase();

@@ -47,6 +47,66 @@ var words = [{
 	id: 9,
 	french: 'tortue',
 	english: 'turtle'
+},
+{
+	id: 10,
+	french: 'abeille',
+	english: 'bee'
+},
+{
+	id: 11,
+	french: 'aigle',
+	english: 'eagle'
+},
+{
+	id: 12,
+	french: 'baleine',
+	english: 'whale'
+},
+{
+	id: 13,
+	french: 'chaton',
+	english: 'kitten'
+},
+{
+	id: 14,
+	french: 'cheval',
+	english: 'horse'
+},
+{
+	id: 15,
+	french: 'chiot',
+	english: 'puppy'
+},
+{
+	id: 16,
+	french: 'cochon',
+	english: 'pig'
+},
+{
+	id: 17,
+	french: 'ecureuil',
+	english: 'squirrel'
+},
+{
+	id: 17,
+	french: 'singe',
+	english: 'monkey'
+},
+{
+	id: 18,
+	french: 'escargot',
+	english: 'snail'
+},
+{
+	id: 19,
+	french: 'souris',
+	english: 'mouse'
+},
+{
+	id: 20,
+	french: 'mouton',
+	english: 'sheep'
 }];
 
 

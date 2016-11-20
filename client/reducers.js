@@ -10,7 +10,7 @@ var initialState = {
 	score:0,
 	feedback: "",
 	endGame: false,
-	newHistory: ["whatever"]
+	newHistory: []
 }
 
 // The currentSession grabs/holds the session data from the user database.
